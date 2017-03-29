@@ -70,7 +70,7 @@ for i = 1:(limit + round(length/lowerby))
     end %if statement to put feed input data into notes
     
     
-    %lower notes in the domain
+    %lower notes in the domain y
     
     if ~isempty(C), C = C - [0,lowerby]; end
     if ~isempty(D), D = D - [0,lowerby]; end
