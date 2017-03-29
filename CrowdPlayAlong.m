@@ -10,9 +10,13 @@ open(video);
 
 figure1 = figure('Position', [0 , 0 , 2300 , 1400 ]);
 
+%Set up simulation parameters
+
 notes = 1;
 length = 200; %size of your domain
 lowerby = 20/30; %amount by which you want the notes to be lowered
+shapesize = 1000;
+
 
 %define arrays to hold your notes
 
@@ -102,35 +106,35 @@ for i = 1:(limit + round(length/lowerby))
         
         
         if ~isempty(C)
-            for ploti = 1:numel(C( :, 1  )), scatter( C(ploti,1) , C(ploti,2) , 150 ,'fill' , 'd' , 'MarkerFaceColor' , [ 0.4 0.9 0.9] ); end
+            for ploti = 1:numel(C( :, 1  )), scatter( C(ploti,1) , C(ploti,2) , shapesize ,'fill' , 'd' , 'MarkerFaceColor' , [ 0.4 0.9 0.9] ); end
         end
         
         if ~isempty(D)
-            for ploti = 1:numel(D( :, 1  )), scatter( D(ploti,1) , D(ploti,2) , 150, 'fill' ,  's' , 'MarkerFaceColor' , [ 0.9 0.4 0.9]  ); end
+            for ploti = 1:numel(D( :, 1  )), scatter( D(ploti,1) , D(ploti,2) , shapesize, 'fill' ,  's' , 'MarkerFaceColor' , [ 0.9 0.4 0.9]  ); end
         end
         
         if ~isempty(E)
-            for ploti = 1:numel(E( :, 1  )), scatter( E(ploti,1) , E(ploti,2) , 150 , 'fill' ,  'o' , 'MarkerFaceColor' , [ 0.9 0.9 0.4]  ); end
+            for ploti = 1:numel(E( :, 1  )), scatter( E(ploti,1) , E(ploti,2) , shapesize , 'fill' ,  'o' , 'MarkerFaceColor' , [ 0.9 0.9 0.4]  ); end
         end
         
         if ~isempty(F)
-            for ploti = 1:numel(F( :, 1  )), scatter( F(ploti,1) , F(ploti,2) , 150 ,  'fill' ,  '^' , 'MarkerFaceColor' , [ 0.4 0.9 0.4] ); end
+            for ploti = 1:numel(F( :, 1  )), scatter( F(ploti,1) , F(ploti,2) , shapesize ,  'fill' ,  '^' , 'MarkerFaceColor' , [ 0.4 0.9 0.4] ); end
         end
         
         if ~isempty(G)
-            for ploti = 1:numel(G( :, 1  )), scatter( G(ploti,1) , G(ploti,2) , 150 , 'fill' ,  'p' , 'MarkerFaceColor' , [ 0.9 0.4 0.4] ); end
+            for ploti = 1:numel(G( :, 1  )), scatter( G(ploti,1) , G(ploti,2) , shapesize, 'fill' ,  'p' , 'MarkerFaceColor' , [ 0.9 0.4 0.4] ); end
         end
         
         if ~isempty(A)
-            for ploti = 1:numel(A( :, 1  )), scatter( A(ploti,1) , A(ploti,2) , 150 , 'fill' ,  'h' , 'MarkerFaceColor' , [ 0.5 0.7 0.9] ); end
+            for ploti = 1:numel(A( :, 1  )), scatter( A(ploti,1) , A(ploti,2) , shapesize , 'fill' ,  'h' , 'MarkerFaceColor' , [ 0.5 0.7 0.9] ); end
         end
         
         if ~isempty(B)
-            for ploti = 1:numel(B( :, 1  )), scatter( B(ploti,1) , B(ploti,2) , 150 , 'fill' , 'o' , 'MarkerFaceColor' , [ 0.9 0.1 0.5] ); end
+            for ploti = 1:numel(B( :, 1  )), scatter( B(ploti,1) , B(ploti,2) , shapesize , 'fill' , 'o' , 'MarkerFaceColor' , [ 0.9 0.1 0.5] ); end
         end
         
         if ~isempty(C1)
-            for ploti = 1:numel(C1( :, 1  )), scatter( C1(ploti,1) , C1(ploti,2) , 150 , 'fill' ,  '>' , 'MarkerFaceColor' , [ 0.3 0.9 0.5] ); end
+            for ploti = 1:numel(C1( :, 1  )), scatter( C1(ploti,1) , C1(ploti,2) , shapesize , 'fill' ,  '>' , 'MarkerFaceColor' , [ 0.3 0.9 0.5] ); end
         end
         
         %plot properties
@@ -142,8 +146,7 @@ for i = 1:(limit + round(length/lowerby))
         
         %write into video file
          writeVideo(video, getframe(figure1) );
-        
-        
+
     end
 end
 
