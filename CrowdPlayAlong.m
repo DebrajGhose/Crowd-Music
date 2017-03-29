@@ -3,9 +3,11 @@
 clear all
 close all
 
+figure()
+
 notes = 1;
 length = 200; %size of your domain
-lowerby = 5; %amount by which you want the notes to be lowered
+lowerby = 20/30; %amount by which you want the notes to be lowered
 
 %define arrays to hold your notes
 
@@ -13,7 +15,7 @@ C = [] ; D = []; E = []; F = []; G = []; A = []; B = []; C1 = [];
 
 %load input array
 
-input = [ 1 0 1 0 0 0 1 1 ; 0 1 0 0 0 0 1 1 ; 0 0 0 0 0 0 1 1  ];
+input = [ 1 0 1 0 0 0 1 1 ; 1 0 0 0 0 0 1 1 ; 0 1 0 0 0 0 1 1  ];
 
 % loop to generate your video
 
@@ -69,64 +71,68 @@ for i = 1:(limit + round(length/lowerby))
         
     end %if statement to put feed input data into notes
     
-    
-    %lower notes in the domain y
-    
-    if ~isempty(C), C = C - [0,lowerby]; end
-    if ~isempty(D), D = D - [0,lowerby]; end
-    if ~isempty(E), E = E - [0,lowerby]; end
-    if ~isempty(F), F = F - [0,lowerby]; end
-    if ~isempty(G), G = G - [0,lowerby]; end
-    if ~isempty(A), A = A - [0,lowerby]; end
-    if ~isempty(B), B = B - [0,lowerby]; end
-    if ~isempty(C1), C1 = C1 - [0,lowerby]; end
-    
-    disp(C)
-    
-    %plot things
-    hold off
-    %plot line
-    
-    plot([0:10] , 5*ones(1,11) ,'r' , 'LineWidth',2 );
-    
-    
-    hold on
-    
-    
-    if ~isempty(C)
-        for ploti = 1:numel(C( :, 1  )), scatter( C(ploti,1) , C(ploti,2) , 'fill'  ); end
+    for loweri = 1:30
+        
+        %lower notes in the domain y
+        
+        if ~isempty(C), C = C - [0,lowerby]; end
+        if ~isempty(D), D = D - [0,lowerby]; end
+        if ~isempty(E), E = E - [0,lowerby]; end
+        if ~isempty(F), F = F - [0,lowerby]; end
+        if ~isempty(G), G = G - [0,lowerby]; end
+        if ~isempty(A), A = A - [0,lowerby]; end
+        if ~isempty(B), B = B - [0,lowerby]; end
+        if ~isempty(C1), C1 = C1 - [0,lowerby]; end
+        
+        %disp(C)
+        
+        %plot things
+        hold off
+        %plot line
+        
+        plot([0:10] , 5*ones(1,11) ,'r' , 'LineWidth',2 );
+        
+        
+        hold on
+        
+        
+        if ~isempty(C)
+            for ploti = 1:numel(C( :, 1  )), scatter( C(ploti,1) , C(ploti,2) , 150 ,'fill' , 'd' , 'MarkerFaceColor' , [ 0.1 0.7 0.7] ); end
+        end
+        
+        if ~isempty(D)
+            for ploti = 1:numel(D( :, 1  )), scatter( D(ploti,1) , D(ploti,2) , 150, 'fill' ,  's' , 'MarkerFaceColor' , [ 0.7 0.1 0.7]  ); end
+        end
+        
+        if ~isempty(E)
+            for ploti = 1:numel(E( :, 1  )), scatter( E(ploti,1) , E(ploti,2) , 150 , 'fill' ,  'o' , 'MarkerFaceColor' , [ 0.7 0.7 0.1]  ); end
+        end
+        
+        if ~isempty(F)
+            for ploti = 1:numel(F( :, 1  )), scatter( F(ploti,1) , F(ploti,2) , 150 ,  'fill' ,  '^' , 'MarkerFaceColor' , [ 0.7 0.1 0.1] ); end
+        end
+        
+        if ~isempty(G)
+            for ploti = 1:numel(G( :, 1  )), scatter( G(ploti,1) , G(ploti,2) , 150 , 'fill' ,  'p' , 'MarkerFaceColor' , [ 0.1 0.7 0.1] ); end
+        end
+        
+        if ~isempty(A)
+            for ploti = 1:numel(A( :, 1  )), scatter( A(ploti,1) , A(ploti,2) , 150 , 'fill' ,  'h' , 'MarkerFaceColor' , [ 0.1 0.1 0.7] ); end
+        end
+        
+        if ~isempty(B)
+            for ploti = 1:numel(B( :, 1  )), scatter( B(ploti,1) , B(ploti,2) , 150 , 'fill' , 'o' , 'MarkerFaceColor' , [ 0.7 0.1 0.1] ); end
+        end
+        
+        if ~isempty(C1)
+            for ploti = 1:numel(C1( :, 1  )), scatter( C1(ploti,1) , C1(ploti,2) , 150 , 'fill' ,  '>' , 'MarkerFaceColor' , [ 0.1 0.1 0.7] ); end
+        end
+        
+        %plot properties
+        
+        axis([ 0 , 10 , 0 , length    ]) ;
+        %axis off
+        set(gca,'Color','k' , 'YTick', [] , 'XTick',[] )
+        drawnow
     end
-    
-    if ~isempty(D)
-        for ploti = 1:numel(D( :, 1  )), scatter( C(ploti,1) , D(ploti,2) , 'fill'  ); end
-    end
-    
-    if ~isempty(E)
-        for ploti = 1:numel(E( :, 1  )), scatter( E(ploti,1) , E(ploti,2) , 'fill'  ); end
-    end
-    
-    if ~isempty(F)
-        for ploti = 1:numel(F( :, 1  )), scatter( F(ploti,1) , F(ploti,2) , 'fill'  ); end
-    end
-    
-    if ~isempty(G)
-        for ploti = 1:numel(G( :, 1  )), scatter( G(ploti,1) , G(ploti,2) , 'fill'  ); end
-    end
-    
-    if ~isempty(A)
-        for ploti = 1:numel(A( :, 1  )), scatter( A(ploti,1) , A(ploti,2) , 'fill'  ); end
-    end
-    
-    if ~isempty(B)
-        for ploti = 1:numel(B( :, 1  )), scatter( B(ploti,1) , B(ploti,2) , 'fill'  ); end
-    end
-    
-    if ~isempty(C1)
-        for ploti = 1:numel(C1( :, 1  )), scatter( C1(ploti,1) , C1(ploti,2) , 'fill'  ); end
-    end
-    
-    axis([ 0 , 10 , 0 , length    ]) ;
-    
-    drawnow
-    
 end
