@@ -5,7 +5,7 @@ close all
 
 %set up video writing stuff
 
-video = VideoWriter('Song3_60.avi');
+video = VideoWriter('Song1_60.avi');
 open(video);
 
 figure1 = figure('Position', [0 , 0 , 2300 , 1400 ]);
@@ -15,8 +15,13 @@ figure1 = figure('Position', [0 , 0 , 2300 , 1400 ]);
 tempo = 60; %in BPM
 smallestunit = 1/4; %smallest note
 
+%alter tempo and smallestunit for easier calculation
+
+tempo=tempo/60; %tempo in beats per second
+smallestunit = smallestunit*4; %normalize to a quarter
+
 length = 200; %size of your domain
-drawfreq = 30*60/(tempo/smallestunit/4); %frequency with which it draws stuff till a new note can appear for a video of 30 frames/sec
+drawfreq = 30*smallestunit/tempo; %frames per beat
 visdiff = 20; %this number of pixels by which shapes should be separated in the smallest time unit
 lowerby = visdiff/drawfreq; %amount by which you want the notes to be lowered
 shapesize = 1000;
@@ -36,7 +41,7 @@ notes = { [] [] [] [] [] [] [] [] [] [] }; %first 8 cells hold notes in an octav
 
 %input = importdata('Song1.txt');
 
-input = importdata('Song3.txt');
+input = importdata('Song1.txt');
 
 
 %input = [ 1 0 1 0 0 0 1 1 0 1; 1 0 0 0 0 0 1 1 1 0 ; 0 1 0 0 0 0 1 1 0 1; 1 1 1 1 1 1 1 1 1 1];
@@ -105,14 +110,24 @@ for i = 1:(sizeofinput + round(length/lowerby)) %the simulation will run for as 
         %plot things
         hold off
         
-        %plot line
+        %plot lines
         
-        plot( 0:11 , disappear_height*ones(1,12) ,'r' , 'LineWidth',2 );
+        plot( 0:11 , disappear_height*ones(1,12) ,'r' , 'LineWidth',2 ); %horizontal line for note limit
         
+        for m = 1:numel(notes), line([m+0.5, m+0.5], [length, 0 ]); end  %vertical lines to guide the eye
         
         hold on
         
         %plot all your notes
+        
+        %first plot notes labels on top  so you can identify them
+        for m=1:numel(notes)
+            
+           scatter( m , length , shapesize ,'fill' , noteshape(m) , 'cdata' , notecolor{m} );
+            
+        end
+        
+        %and then actually plot all your notes
         
         for m=1:numel(notes)
             
@@ -122,12 +137,16 @@ for i = 1:(sizeofinput + round(length/lowerby)) %the simulation will run for as 
             
         end
         
-        %plot properties
+        %% plot properties
         
         axis([ 0 , 11 , 0 , length    ]) ;
         
         %axis off
-        set(gca,'Color','k' , 'YTick', [] , 'XTick',[] )
+        set(gca,'Color','k' , 'YTick', [] , 'FontSize' , 24);
+        
+        xticklabels({'|', 'C' , 'D' , 'E' , 'F' , 'G' , 'A' , 'B' , 'C' , 'Bass' , 'Snare'   });
+        
+        
         drawnow
         
         %write into video file
