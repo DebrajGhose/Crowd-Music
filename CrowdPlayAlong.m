@@ -5,15 +5,15 @@ close all
 
 %set up video writing stuff
 
-video = VideoWriter('Song1_60.avi');
+video = VideoWriter('Song3_90.avi');
 open(video);
 
 figure1 = figure('Position', [0 , 0 , 2300 , 1400 ]);
 
 %Set up simulation parameters
 
-tempo = 60; %in BPM
-smallestunit = 1/4; %smallest note
+tempo = 90; %in BPM
+smallestunit = 1/8; %smallest note
 
 %alter tempo and smallestunit for easier calculation
 
@@ -28,7 +28,7 @@ shapesize = 1000;
 disappear_height = 20; %height at which the shape should disappear
 noteshape = 'o<s>dsvohp'; %shapes of your notes
 notecolor = { [0.8 0.1 0.1] [0.7 0.3 0.1] [0.8 0.8 0.1] [0.1 0.9 0.1] [0.1 0.6 0.6] ...
-    [0.7 0.1 0.7] [0.5 0.2 0.8] [0.8 0.1 0.1] [0.9 0.9 0.9] [0.5 0.5 0.5]  }; %colors of your notes
+    [0.7 0.1 0.7] [0.8 0.1 0.1] [0.5 0.2 0.8] [0.9 0.9 0.9] [0.5 0.5 0.5]  }; %colors of your notes
 colornow = {[] [] [] [] [] [] [] [] [] [] }; %this holds the current color the note is going to be
 lightentolerance = 10; %proximity for when lightening kicks in
 
@@ -41,7 +41,7 @@ notes = { [] [] [] [] [] [] [] [] [] [] }; %first 8 cells hold notes in an octav
 
 %input = importdata('Song1.txt');
 
-input = importdata('Song1.txt');
+input = importdata('Song3.txt.');
 
 
 %input = [ 1 0 1 0 0 0 1 1 0 1; 1 0 0 0 0 0 1 1 1 0 ; 0 1 0 0 0 0 1 1 0 1; 1 1 1 1 1 1 1 1 1 1];
