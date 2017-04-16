@@ -5,14 +5,14 @@ close all
 
 %set up video writing stuff
 
-video = VideoWriter('Control_90.avi');
+video = VideoWriter('Control_80.avi');
 open(video);
 
 figure1 = figure('Position', [0 , 0 , 2300 , 1400 ]);
 
 %Set up simulation parameters
 
-tempo = 90; %in BPM
+tempo = 80; %in BPM
 smallestunit = 1/8; %smallest note
 
 %alter tempo and smallestunit for easier calculation

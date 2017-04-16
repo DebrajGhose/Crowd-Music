@@ -28,8 +28,8 @@ shapesize = 1000;
 disappear_height = 20; %height at which the shape should disappear
 noteshape = 'o<s>dsvohpd'; %shapes of your notes
 notecolor = { [0.8 0.1 0.1] [0.7 0.3 0.1] [0.8 0.8 0.1] [0.1 0.9 0.1] [0.1 0.6 0.6] ...
-    [0.7 0.1 0.7] [0.8 0.1 0.1] [0.5 0.2 0.8] [0.9 0.9 0.9] [0.5 0.5 0.5] [0 0 1]  }; %colors of your notes
-colornow = {[] [] [] [] [] [] [] [] [] [] [] }; %this holds the current color the note is going to be
+     [0.5 0.2 0.8] [0.7 0.1 0.7] [0.8 0.1 0.1]  [0.9 0.9 0.9] [0.5 0.5 0.5]  }; %colors of your notes
+colornow = {[] [] [] [] [] [] [] [] [] [] }; %this holds the current color the note is going to be
 lightentolerance = 10; %proximity for when lightening kicks in
 
 
@@ -41,7 +41,7 @@ notes = { [] [] [] [] [] [] [] [] [] [] }; %first 8 cells hold notes in an octav
 
 %input = importdata('Song1.txt');
 
-input = importdata('.');
+input = importdata('Song3.txt');
 
 
 % loop to generate your video
@@ -142,7 +142,7 @@ for i = 1:(sizeofinput + round(length)+20) %the simulation will run for as long 
         %axis off
         set(gca,'Color','k' , 'YTick', [] , 'FontSize' , 24);
         
-        xticklabels({'|', 'C' , 'D' , 'E' , 'F' , 'G' , 'A' , 'B' , 'C' , 'Bass' , 'Snare' , '?'  });
+        xticklabels({'|', 'C' , 'D' , 'E' , 'F' , 'G' , 'A' , 'B' , 'C' , 'Bass' , 'Snare'   });
         
         drawnow
         
