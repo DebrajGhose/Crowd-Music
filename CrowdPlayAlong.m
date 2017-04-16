@@ -48,7 +48,7 @@ input = importdata('.');
 
 sizeofinput = numel(input(:,1)); %number of things (notes) that are going to be fed
 
-for i = 1:(sizeofinput + round(length/lowerby)) %the simulation will run for as long as it takes the last note to reach the bottom of the screen
+for i = 1:(sizeofinput + round(length)+20) %the simulation will run for as long as it takes the last note to reach the bottom of the screen
 
     %% input stuff from the song matrix
     

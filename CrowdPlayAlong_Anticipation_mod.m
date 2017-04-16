@@ -26,7 +26,7 @@ visdiff = 20; %this number of pixels by which shapes should be separated in the 
 lowerby = visdiff/drawfreq; %amount by which you want the notes to be lowered
 shapesize = 1000;
 disappear_height = 20; %height at which the shape should disappear
-noteshape = 'o<s>dsvohp'; %shapes of your notes
+noteshape = 'o<s>dsvohpd'; %shapes of your notes
 notecolor = { [0.8 0.1 0.1] [0.7 0.3 0.1] [0.8 0.8 0.1] [0.1 0.9 0.1] [0.1 0.6 0.6] ...
     [0.7 0.1 0.7] [0.8 0.1 0.1] [0.5 0.2 0.8] [0.9 0.9 0.9] [0.5 0.5 0.5]  }; %colors of your notes
 colornow = {[] [] [] [] [] [] [] [] [] [] [] }; %this holds the current color the note is going to be
@@ -35,7 +35,7 @@ lightentolerance = 10; %proximity for when lightening kicks in
 
 %define arrays to hold your notes; these just hold the x and y locations of your notes
 
-notes = { [] [] [] [] [] [] [] [] [] [] []}; %first 8 cells hold notes in an octave. Next two cells hold bass and snare. Final cell holds vocal part.
+notes = { [] [] [] [] [] [] [] [] [] [] [] }; %first 8 cells hold notes in an octave. Next two cells hold bass and snare. Final cell holds vocal part.
 
 %load input array
 
@@ -50,7 +50,7 @@ input = importdata('Song3.txt.');
 
 sizeofinput = numel(input(:,1)); %number of things (notes) that are going to be fed
 
-for i = 1:(sizeofinput + round(length/lowerby)) %the simulation will run for as long as it takes the last note to reach the bottom of the screen
+for i = 1:(sizeofinput + round(length)+20) %the simulation will run for as long as it takes the last note to reach the bottom of the screen
 
     %% input stuff from the song matrix
     

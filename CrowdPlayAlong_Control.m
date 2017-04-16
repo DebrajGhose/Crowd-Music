@@ -5,7 +5,7 @@ close all
 
 %set up video writing stuff
 
-video = VideoWriter('Song3_90.avi');
+video = VideoWriter('Control_90.avi');
 open(video);
 
 figure1 = figure('Position', [0 , 0 , 2300 , 1400 ]);
@@ -26,9 +26,8 @@ visdiff = 20; %this number of pixels by which shapes should be separated in the 
 lowerby = visdiff/drawfreq; %amount by which you want the notes to be lowered
 shapesize = 1000;
 disappear_height = 20; %height at which the shape should disappear
-noteshape = 'o<s>dsvohpd'; %shapes of your notes
-notecolor = { [0.8 0.1 0.1] [0.7 0.3 0.1] [0.8 0.8 0.1] [0.1 0.9 0.1] [0.1 0.6 0.6] ...
-    [0.7 0.1 0.7] [0.8 0.1 0.1] [0.5 0.2 0.8] [0.9 0.9 0.9] [0.5 0.5 0.5] [0 0 1]  }; %colors of your notes
+noteshape = 'o<s>dsvohp'; %shapes of your notes
+notecolor = { [0 0 0]  [0 0 0] [0 0 0] [0 0 0] [0 0 0] [0 0 0] [0 0 0] [0 0 0] [0 0 0] [0 0 0]  }; %colors of your notes
 colornow = {[] [] [] [] [] [] [] [] [] [] [] }; %this holds the current color the note is going to be
 lightentolerance = 10; %proximity for when lightening kicks in
 
@@ -41,23 +40,29 @@ notes = { [] [] [] [] [] [] [] [] [] [] }; %first 8 cells hold notes in an octav
 
 %input = importdata('Song1.txt');
 
-input = importdata('.');
+input = [0 0 0 0 0 0 0 0 0 1 ; 0 0 0 0 0 0 0 0 0 0 ; 0 0 0 0 0 0 0 0 0 1 ; 0 0 0 0 0 0 0 0 0 1 ...
+    ; 0 0 0 0 0 0 0 0 0 1 ; 0 0 0 0 0 0 0 0 0 1 ; 0 0 0 0 0 0 0 0 0 0 ; 0 0 0 0 0 0 0 0 0 1];
 
+for i = 1:3
+    
+    input = [input ; [0 0 0 0 0 0 0 0 0 0] ];
+    
+end
 
 % loop to generate your video
 
 sizeofinput = numel(input(:,1)); %number of things (notes) that are going to be fed
 
-for i = 1:(sizeofinput + round(length/lowerby)) %the simulation will run for as long as it takes the last note to reach the bottom of the screen
-
+for i = 1:(sizeofinput + round(length)+20) %the simulation will run for as long as it takes the last note to reach the bottom of the screen
+    
     %% input stuff from the song matrix
     
     if i <= sizeofinput %there will be an error if this condition is not there
         
         for m=1:numel(notes)
             
-            if input(i,m) == 1 %check if a note exists at this location 
-                notes{m} = [notes{m} ; [m,length] ]; 
+            if input(i,m) == 1 %check if a note exists at this location
+                notes{m} = [notes{m} ; [m,length] ];
                 colornow{m} = [colornow{m} ; notecolor{m} ];
             end
             
@@ -99,7 +104,7 @@ for i = 1:(sizeofinput + round(length/lowerby)) %the simulation will run for as 
                 
                 if error < lightentolerance
                     
-                   colornow{m}(1,:) = colornow{m}(1,:) + ( 1 - colornow{m}(1,:)    )*1/(1 + (0.5*error)^4) ;
+                    colornow{m}(1,:) = colornow{m}(1,:) + ( 1 - colornow{m}(1,:)    )*1/(1 + (0.5*error)^4) ;
                     
                 end
             end
@@ -121,7 +126,7 @@ for i = 1:(sizeofinput + round(length/lowerby)) %the simulation will run for as 
         %first plot notes labels on top  so you can identify them
         for m=1:numel(notes)
             
-           scatter( m , length , shapesize ,'fill' , noteshape(m) , 'cdata' , notecolor{m} );
+            scatter( m , length , shapesize ,'fill' , noteshape(m) , 'cdata' , notecolor{m} );
             
         end
         
@@ -142,7 +147,7 @@ for i = 1:(sizeofinput + round(length/lowerby)) %the simulation will run for as 
         %axis off
         set(gca,'Color','k' , 'YTick', [] , 'FontSize' , 24);
         
-        xticklabels({'|', 'C' , 'D' , 'E' , 'F' , 'G' , 'A' , 'B' , 'C' , 'Bass' , 'Snare' , '?'  });
+        xticklabels({'|', 'C' , 'D' , 'E' , 'F' , 'G' , 'A' , 'B' , 'C' , 'Bass' , 'Snare'  });
         
         drawnow
         
