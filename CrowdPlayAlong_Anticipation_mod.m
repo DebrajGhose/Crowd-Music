@@ -26,7 +26,7 @@ visdiff = 20; %this number of pixels by which shapes should be separated in the 
 lowerby = visdiff/drawfreq; %amount by which you want the notes to be lowered
 shapesize = 1000;
 disappear_height = 20; %height at which the shape should disappear
-noteshape = 'o<s>dsvohpd'; %shapes of your notes
+noteshape = 'o<s>dsvohps'; %shapes of your notes
 notecolor = { [0.8 0.1 0.1] [0.7 0.3 0.1] [0.8 0.8 0.1] [0.1 0.9 0.1] [0.1 0.6 0.6] ...
      [0.5 0.2 0.8] [0.7 0.1 0.7]  [0.8 0.1 0.1] [0.9 0.9 0.9] [0.5 0.5 0.5] [0 0 1]  }; %colors of your notes
 colornow = { [] [] [] [] [] [] [] [] [] [] [] }; %this holds the current color the note is going to be

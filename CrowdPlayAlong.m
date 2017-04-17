@@ -5,7 +5,7 @@ close all
 
 %set up video writing stuff
 
-video = VideoWriter('Song3_90.avi');
+video = VideoWriter('Larry_Primer_90.avi');
 open(video);
 
 figure1 = figure('Position', [0 , 0 , 2300 , 1400 ]);
@@ -30,7 +30,7 @@ noteshape = 'o<s>dsvohpd'; %shapes of your notes
 notecolor = { [0.8 0.1 0.1] [0.7 0.3 0.1] [0.8 0.8 0.1] [0.1 0.9 0.1] [0.1 0.6 0.6] ...
      [0.5 0.2 0.8] [0.7 0.1 0.7] [0.8 0.1 0.1]  [0.9 0.9 0.9] [0.5 0.5 0.5]  }; %colors of your notes
 colornow = {[] [] [] [] [] [] [] [] [] [] }; %this holds the current color the note is going to be
-lightentolerance = 10; %proximity for when lightening kicks in
+lightentolerance = 20; %proximity for when lightening kicks in
 
 
 %define arrays to hold your notes; these just hold the x and y locations of your notes
@@ -41,7 +41,7 @@ notes = { [] [] [] [] [] [] [] [] [] [] }; %first 8 cells hold notes in an octav
 
 %input = importdata('Song1.txt');
 
-input = importdata('Song3.txt');
+input = importdata('LarryPrimer.txt');
 
 
 % loop to generate your video
@@ -99,7 +99,7 @@ for i = 1:(sizeofinput + round(length)+20) %the simulation will run for as long 
                 
                 if error < lightentolerance
                     
-                   colornow{m}(1,:) = colornow{m}(1,:) + ( 1 - colornow{m}(1,:)    )*1/(1 + (0.5*error)^4) ;
+                   colornow{m}(1,:) = colornow{m}(1,:) + ( 1 - colornow{m}(1,:)    )*1/(1 + (0.5*error)^1) ;
                     
                 end
             end
